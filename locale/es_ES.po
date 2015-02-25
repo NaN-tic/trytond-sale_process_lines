@@ -1,0 +1,100 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:sale.line,processing:"
+msgid "Processing"
+msgstr "Procesandose"
+
+msgctxt "field:sale.process.lines.select,id:"
+msgid "ID"
+msgstr "Identificador"
+
+msgctxt "field:sale.process.lines.select,lines:"
+msgid "Lines to process"
+msgstr "Líneas a procesar"
+
+msgctxt "field:sale.process.lines.select,sale:"
+msgid "Sale"
+msgstr "Venta"
+
+msgctxt "field:sale.sale,pending_process:"
+msgid "Pending to process"
+msgstr "Pendiente de procesar"
+
+msgctxt "model:ir.action,name:act_sale_line_form"
+msgid "Sale Lines"
+msgstr "Líneas de venta"
+
+msgctxt "model:ir.action,name:act_sale_sale_lines_form"
+msgid "Lines"
+msgstr "Líneas"
+
+msgctxt "model:ir.action,name:wizard_process_lines"
+msgid "Process Lines"
+msgstr "Procesar líneas"
+
+msgctxt "model:ir.action.act_window.domain,name:act_sale_line_form_domain_all"
+msgid "All"
+msgstr "Todas"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_sale_line_form_domain_to_process"
+msgid "To Process"
+msgstr "A procesar"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_sale_line_form_domain_to_process_wo_product"
+msgid "To Process without product"
+msgstr "A procesar sin producto"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_sale_sale_lines_form_domain_all2"
+msgid "All"
+msgstr "Todas"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_sale_sale_lines_form_domain_to_process"
+msgid "To Process"
+msgstr "A procesar"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_sale_sale_lines_form_domain_to_process_wo_product"
+msgid "To Process without product"
+msgstr "A procesar sin producto"
+
+msgctxt "model:ir.ui.menu,name:menu_sale_line_form"
+msgid "Sale Lines"
+msgstr "Líneas de venta"
+
+msgctxt "model:sale.process.lines.select,name:"
+msgid "Process Lines Wizard - Select Lines"
+msgstr "Asistente procesar líneas - Seleccionar líneas"
+
+msgctxt "view:sale.line:"
+msgid "Sale Lines"
+msgstr "Líneas de venta"
+
+msgctxt "view:sale.process.lines.select:"
+msgid "Choose lines to process"
+msgstr "Seleccione líneas a procesar"
+
+msgctxt "view:sale.process.lines.select:"
+msgid "Process Lines"
+msgstr "Procesar líneas"
+
+msgctxt "view:sale.sale:"
+msgid "Process"
+msgstr "Procesar"
+
+msgctxt "wizard_button:sale.process.lines,select,end:"
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgctxt "wizard_button:sale.process.lines,select,process_lines:"
+msgid "Process _Lines"
+msgstr "Procesar _líneas"
+
+msgctxt "wizard_button:sale.process.lines,select,process_order:"
+msgid "Process _Order"
+msgstr "Procesar _pedido"

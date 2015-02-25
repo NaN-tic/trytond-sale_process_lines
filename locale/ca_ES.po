@@ -1,0 +1,100 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:sale.line,processing:"
+msgid "Processing"
+msgstr "Processant-se"
+
+msgctxt "field:sale.process.lines.select,id:"
+msgid "ID"
+msgstr "Identificador"
+
+msgctxt "field:sale.process.lines.select,lines:"
+msgid "Lines to process"
+msgstr "Línies a processar"
+
+msgctxt "field:sale.process.lines.select,sale:"
+msgid "Sale"
+msgstr "Venda"
+
+msgctxt "field:sale.sale,pending_process:"
+msgid "Pending to process"
+msgstr "Pendent de processar"
+
+msgctxt "model:ir.action,name:act_sale_line_form"
+msgid "Sale Lines"
+msgstr "Línies de venda"
+
+msgctxt "model:ir.action,name:act_sale_sale_lines_form"
+msgid "Lines"
+msgstr "Línies"
+
+msgctxt "model:ir.action,name:wizard_process_lines"
+msgid "Process Lines"
+msgstr "Processa línies"
+
+msgctxt "model:ir.action.act_window.domain,name:act_sale_line_form_domain_all"
+msgid "All"
+msgstr "Tots"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_sale_line_form_domain_to_process"
+msgid "To Process"
+msgstr "A processar"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_sale_line_form_domain_to_process_wo_product"
+msgid "To Process without product"
+msgstr "A processar sense producte"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_sale_sale_lines_form_domain_all2"
+msgid "All"
+msgstr "Tots"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_sale_sale_lines_form_domain_to_process"
+msgid "To Process"
+msgstr "A processar"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_sale_sale_lines_form_domain_to_process_wo_product"
+msgid "To Process without product"
+msgstr "A processar sense producte"
+
+msgctxt "model:ir.ui.menu,name:menu_sale_line_form"
+msgid "Sale Lines"
+msgstr "Línies de venda"
+
+msgctxt "model:sale.process.lines.select,name:"
+msgid "Process Lines Wizard - Select Lines"
+msgstr "Assistent processa línies - Selecciona línies"
+
+msgctxt "view:sale.line:"
+msgid "Sale Lines"
+msgstr "Línies de venda"
+
+msgctxt "view:sale.process.lines.select:"
+msgid "Choose lines to process"
+msgstr "Selecciona les línies a processar"
+
+msgctxt "view:sale.process.lines.select:"
+msgid "Process Lines"
+msgstr "Processa línies"
+
+msgctxt "view:sale.sale:"
+msgid "Process"
+msgstr "Processa"
+
+msgctxt "wizard_button:sale.process.lines,select,end:"
+msgid "Cancel"
+msgstr "Cancel·la"
+
+msgctxt "wizard_button:sale.process.lines,select,process_lines:"
+msgid "Process _Lines"
+msgstr "Processa _línies"
+
+msgctxt "wizard_button:sale.process.lines,select,process_order:"
+msgid "Process _Order"
+msgstr "Processa c_omanda"

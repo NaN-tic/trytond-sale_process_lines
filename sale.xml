@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!-- The COPYRIGHT file at the top level of this repository contains the full
+     copyright notices and license terms. -->
+<tryton>
+    <data>
+        <!-- sale.sale -->
+       <record model="ir.ui.view" id="sale_view_form">
+           <field name="model">sale.sale</field>
+           <field name="inherit" ref="sale.sale_view_form"/>
+           <field name="name">sale_form</field>
+       </record>
+
+        <record model="ir.model.button" id="sale_process_lines_button">
+            <field name="name">process_lines</field>
+            <field name="model" search="[('model', '=', 'sale.sale')]"/>
+        </record>
+        <record model="ir.model.button-res.group"
+                id="sale_process_lines_button_group_sale">
+            <field name="button" ref="sale_process_lines_button"/>
+            <field name="group" ref="sale.group_sale"/>
+        </record>
+
+        <!-- sale.line -->
+        <record model="ir.ui.view" id="sale_line_view_tree">
+            <field name="model">sale.line</field>
+            <field name="inherit" ref="sale.sale_line_view_tree"/>
+            <field name="name">sale_line_tree</field>
+        </record>
+
+        <record model="ir.ui.view" id="sale_line_view_tree_sequence">
+            <field name="model">sale.line</field>
+            <field name="inherit" ref="sale.sale_line_view_tree_sequence"/>
+            <field name="name">sale_line_tree_sequence</field>
+        </record>
+
+        <record model="ir.action.act_window" id="act_sale_line_form">
+            <field name="name">Sale Lines</field>
+            <field name="res_model">sale.line</field>
+            <field name="search_value"></field>
+        </record>
+        <record model="ir.action.act_window.view" id="act_sale_line_form_view1">
+            <field name="act_window" ref="act_sale_line_form"/>
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="sale.sale_line_view_tree"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_sale_line_form_view2">
+            <field name="act_window" ref="act_sale_line_form"/>
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="sale.sale_line_view_form"/>
+        </record>
+        <record model="ir.action.act_window.domain"
+                id="act_sale_line_form_domain_to_process">
+            <field name="name">To Process</field>
+            <field name="act_window" ref="act_sale_line_form"/>
+            <field name="sequence" eval="10"/>
+            <field name="domain">[('sale.state', 'in', ['confirmed', 'processing']),('type', '=', 'line'),('product', '!=', None),('processing', '=', False)]</field>
+        </record>
+        <record model="ir.action.act_window.domain"
+                id="act_sale_line_form_domain_to_process_wo_product">
+            <field name="name">To Process without product</field>
+            <field name="act_window" ref="act_sale_line_form"/>
+            <field name="sequence" eval="20"/>
+            <field name="domain">[('sale.state', 'in', ['confirmed', 'processing']),('type', '=', 'line'),('processing', '=', False),('product', '=', None)]</field>
+        </record>
+        <record model="ir.action.act_window.domain"
+                id="act_sale_line_form_domain_all">
+            <field name="name">All</field>
+            <field name="act_window" ref="act_sale_line_form"/>
+            <field name="sequence" eval="9999"/>
+            <field name="domain"></field>
+        </record>
+
+        <record model="ir.action.act_window" id="act_sale_sale_lines_form">
+            <field name="name">Lines</field>
+            <field name="res_model">sale.line</field>
+            <field name="domain">[('sale', 'in', Eval('active_ids'))]</field>
+        </record>
+        <record model="ir.action.act_window.domain"
+                id="act_sale_sale_lines_form_domain_to_process">
+            <field name="name">To Process</field>
+            <field name="act_window" ref="act_sale_sale_lines_form"/>
+            <field name="sequence" eval="10"/>
+            <field name="domain">[('sale.state', 'in', ['confirmed', 'processing']),('type', '=', 'line'),('product', '!=', None),('processing', '=', False)]</field>
+        </record>
+        <record model="ir.action.act_window.domain"
+                id="act_sale_sale_lines_form_domain_to_process_wo_product">
+            <field name="name">To Process without product</field>
+            <field name="act_window" ref="act_sale_sale_lines_form"/>
+            <field name="sequence" eval="20"/>
+            <field name="domain">[('sale.state', 'in', ['confirmed', 'processing']),('type', '=', 'line'),('processing', '=', False),('product', '=', None)]</field>
+        </record>
+        <record model="ir.action.act_window.domain"
+                id="act_sale_sale_lines_form_domain_all2">
+            <field name="name">All</field>
+            <field name="act_window" ref="act_sale_sale_lines_form"/>
+            <field name="sequence" eval="9999"/>
+            <field name="domain"></field>
+        </record>
+        <record model="ir.action.keyword" id="act_open_sale_sale_lines_keyword1">
+            <field name="keyword">form_relate</field>
+            <field name="model">sale.sale,-1</field>
+            <field name="action" ref="act_sale_sale_lines_form"/>
+        </record>
+
+        <!-- sale.process.lines -->
+        <record model="ir.action.wizard" id="wizard_process_lines">
+            <field name="name">Process Lines</field>
+            <field name="wiz_name">sale.process.lines</field>
+            <field name="model">sale.sale</field>
+        </record>
+
+        <record model="ir.ui.view" id="process_lines_select_view_form">
+            <field name="model">sale.process.lines.select</field>
+            <field name="type">form</field>
+            <field name="name">process_lines_select_form</field>
+        </record>
+
+        <!-- menus -->
+        <menuitem id="menu_sale_line_form" action="act_sale_line_form"
+            parent="sale.menu_sale_form" sequence="10"/>
+        <record model="ir.ui.menu-res.group" id="menu_sale_line_form_group_sale">
+            <field name="menu" ref="menu_sale_line_form"/>
+            <field name="group" ref="sale.group_sale"/>
+        </record>
+    </data>
+</tryton>
