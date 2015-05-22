@@ -30,4 +30,4 @@ agrupadas por pestañas en líneas *a procesar*, *a procesar sin producto* y por
 última pestaña también podremos diferenciar entre las líneas procesadas (en
 verde) y las que no (en negro) por su color.
 
-.. |lines_menu| tryref:: sale_process_line.menu_sale_line_form/complete_name
+.. |lines_menu| tryref:: sale_process_lines.menu_sale_line_form/complete_name
