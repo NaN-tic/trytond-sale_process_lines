@@ -72,6 +72,10 @@ msgid "Process Lines Wizard - Select Lines"
 msgstr "Asistente procesar líneas - Seleccionar líneas"
 
 msgctxt "view:sale.line:"
+msgid "Process"
+msgstr "Procesar"
+
+msgctxt "view:sale.line:"
 msgid "Sale Lines"
 msgstr "Líneas de venta"
 

@@ -58,6 +58,24 @@ class SaleLine:
 
     processing = fields.Boolean('Processing', readonly=True)
 
+    @classmethod
+    def __setup__(cls):
+        super(SaleLine, cls).__setup__()
+        cls._buttons.update({
+                'process': {
+                    'invisible': Eval('processing', True),
+                    },
+                })
+
+    @classmethod
+    @ModelView.button
+    def process(cls, lines):
+        pool = Pool()
+        Sale = pool.get('sale.sale')
+        sales = {l.sale for l in lines}
+        cls.write(lines, {'processing': True})
+        Sale.process(sales)
+
     def get_invoice_line(self, invoice_type):
         if not self.processing:
             return []

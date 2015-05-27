@@ -8,5 +8,6 @@
     </xpath>
     <xpath expr="/tree" position="inside">
         <field name="processing" tree_invisible="1"/>
+        <button name="process" tree_invisible="1" string="Process"/>
     </xpath>
 </data>
