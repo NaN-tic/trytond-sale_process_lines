@@ -12,7 +12,6 @@ __metaclass__ = PoolMeta
 
 class Sale:
     __name__ = 'sale.sale'
-
     pending_process = fields.Function(
         fields.Boolean('Pending to process'),
         'on_change_with_pending_process')
@@ -55,16 +54,24 @@ class Sale:
 
 class SaleLine:
     __name__ = 'sale.line'
-
     processing = fields.Boolean('Processing', readonly=True)
 
     @classmethod
     def __setup__(cls):
         super(SaleLine, cls).__setup__()
+        cls._allow_modify_after_draft = set(['state', 'processing',
+                'invoice_lines', 'moves', 'moves_ignored', 'moves_recreated'])
         cls._buttons.update({
                 'process': {
                     'invisible': Eval('processing', True),
                     },
+                })
+        cls._error_messages.update({
+                'modify_no_draft_sale': ('You can not modify line "%(line)s" '
+                    'from sale "%(sale)s" that is not draft.'),
+                'add_in_no_draft_sale': ('You can not add a line to sale '
+                    '"%(sale)s" that is not draft.'),
+
                 })
 
     @classmethod
@@ -87,6 +94,32 @@ class SaleLine:
         return super(SaleLine, self).get_move(shipment_type)
 
     @classmethod
+    def check_modify(cls, lines):
+        '''
+        Check if the lines can be modified
+        '''
+        for line in lines:
+            if (line.sale
+                    and line.sale.state != 'draft'):
+                cls.raise_user_error('modify_no_draft_sale', {
+                        'line': line.rec_name,
+                        'sale': line.sale.rec_name
+                        })
+
+    @classmethod
+    def create(cls, vlist):
+        Sale = Pool().get('sale.sale')
+        sale_ids = []
+        for vals in vlist:
+            if vals.get('sale'):
+                sale_ids.append(vals.get('sale'))
+        for sale in Sale.browse(sale_ids):
+            if sale.state != 'draft':
+                cls.raise_user_error('add_in_no_draft_sale',
+                    (sale.rec_name,))
+        return super(SaleLine, cls).create(vlist)
+
+    @classmethod
     def copy(cls, lines, default=None):
         if default is None:
             default = {}
@@ -95,11 +128,32 @@ class SaleLine:
         default['processing'] = False
         return super(SaleLine, cls).copy(lines, default=default)
 
+    @classmethod
+    def write(cls, *args):
+        Sale = Pool().get('sale.sale')
+        sale_ids = []
+        actions = iter(args)
+        for lines, values in zip(actions, actions):
+            vals_set = set(values)
+            if vals_set - cls._allow_modify_after_draft:
+                cls.check_modify(lines)
+            if values.get('sale'):
+                sale_ids.append(values.get('sale'))
+        for sale in Sale.browse(sale_ids):
+            if sale.state != 'draft':
+                cls.raise_user_error('add_in_no_draft_sale',
+                    (sale.rec_name,))
+        super(SaleLine, cls).write(*args)
+
+    @classmethod
+    def delete(cls, lines):
+        cls.check_modify(lines)
+        super(SaleLine, cls).delete(lines)
+
 
 class ProcessLinesSelect(ModelView):
     'Process Lines Wizard - Select Lines'
     __name__ = 'sale.process.lines.select'
-
     sale = fields.Many2One('sale.sale', 'Sale', required=True, readonly=True)
     lines = fields.Many2Many('sale.line', None, None, 'Lines to process',
         domain=[

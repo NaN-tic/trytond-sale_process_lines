@@ -2,6 +2,18 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
+msgctxt "error:sale.line:"
+msgid "You can not add a line to sale \"%(sale)s\" that is not draft."
+msgstr ""
+"No podeu afegir una línia a la venda \"%(sale)s\" perquè no està en "
+"borrador."
+
+msgctxt "error:sale.line:"
+msgid "You can not modify line \"%(line)s\" from sale \"%(sale)s\" that is not draft."
+msgstr ""
+"No podeu modificar la línia \"%(line)s\" de la venda \"%(sale)s\" perquè no "
+"està en borrador."
+
 msgctxt "field:sale.line,processing:"
 msgid "Processing"
 msgstr "Processant-se"

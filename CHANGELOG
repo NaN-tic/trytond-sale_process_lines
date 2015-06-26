@@ -1,3 +1,4 @@
+* Don't allow to modify line fields if sale is not in draft state
 * Add a button to directly process lines
 
 Version 3.4.0 - 2015-02-25
