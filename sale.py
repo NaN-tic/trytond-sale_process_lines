@@ -135,10 +135,12 @@ class SaleLine:
         actions = iter(args)
         for lines, values in zip(actions, actions):
             vals_set = set(values)
-            if vals_set - cls._allow_modify_after_draft:
+
+            if not vals_set.issubset(cls._allow_modify_after_draft):
                 cls.check_modify(lines)
             if values.get('sale'):
                 sale_ids.append(values.get('sale'))
+
         for sale in Sale.browse(sale_ids):
             if sale.state != 'draft':
                 cls.raise_user_error('add_in_no_draft_sale',
@@ -205,6 +207,7 @@ class ProcessLines(Wizard):
         sale = self.select.sale
         sale_lines = [l for l in sale.lines
             if l.type == 'line' and not l.processing]
+
         if sale_lines:
             SaleLine.write(sale_lines, {
                     'processing': True,
