@@ -53,14 +53,18 @@
             <field name="name">To Process</field>
             <field name="act_window" ref="act_sale_line_form"/>
             <field name="sequence" eval="10"/>
-            <field name="domain">[('sale.state', 'in', ['confirmed', 'processing']),('type', '=', 'line'),('product', '!=', None),('processing', '=', False)]</field>
+            <field name="domain"
+                eval="[('sale.state', 'in', ['confirmed', 'processing']),('type', '=', 'line'),('product', '!=', None),('processing', '=', False)]"
+                pyson="1"/>
         </record>
         <record model="ir.action.act_window.domain"
                 id="act_sale_line_form_domain_to_process_wo_product">
             <field name="name">To Process without product</field>
             <field name="act_window" ref="act_sale_line_form"/>
             <field name="sequence" eval="20"/>
-            <field name="domain">[('sale.state', 'in', ['confirmed', 'processing']),('type', '=', 'line'),('processing', '=', False),('product', '=', None)]</field>
+            <field name="domain"
+                eval="[('sale.state', 'in', ['confirmed', 'processing']),('type', '=', 'line'),('processing', '=', False),('product', '=', None)]"
+                pyson="1"/>
         </record>
         <record model="ir.action.act_window.domain"
                 id="act_sale_line_form_domain_all">
@@ -73,7 +77,9 @@
         <record model="ir.action.act_window" id="act_sale_sale_lines_form">
             <field name="name">Lines</field>
             <field name="res_model">sale.line</field>
-            <field name="domain">[('sale', 'in', Eval('active_ids'))]</field>
+            <field name="domain"
+                eval="[('sale', 'in', Eval('active_ids'))]"
+                pyson="1"/>
         </record>
         <record model="ir.action.act_window.view" id="act_sale_sale_lines_form_view1">
             <field name="act_window" ref="act_sale_sale_lines_form"/>
@@ -90,14 +96,18 @@
             <field name="name">To Process</field>
             <field name="act_window" ref="act_sale_sale_lines_form"/>
             <field name="sequence" eval="10"/>
-            <field name="domain">[('sale.state', 'in', ['confirmed', 'processing']),('type', '=', 'line'),('product', '!=', None),('processing', '=', False)]</field>
+            <field name="domain"
+                eval="[('sale.state', 'in', ['confirmed', 'processing']),('type', '=', 'line'),('product', '!=', None),('processing', '=', False)]"
+                pyson="1"/>
         </record>
         <record model="ir.action.act_window.domain"
                 id="act_sale_sale_lines_form_domain_to_process_wo_product">
             <field name="name">To Process without product</field>
             <field name="act_window" ref="act_sale_sale_lines_form"/>
             <field name="sequence" eval="20"/>
-            <field name="domain">[('sale.state', 'in', ['confirmed', 'processing']),('type', '=', 'line'),('processing', '=', False),('product', '=', None)]</field>
+            <field name="domain"
+                eval="[('sale.state', 'in', ['confirmed', 'processing']),('type', '=', 'line'),('processing', '=', False),('product', '=', None)]"
+                pyson="1"/>
         </record>
         <record model="ir.action.act_window.domain"
                 id="act_sale_sale_lines_form_domain_all2">
