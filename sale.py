@@ -83,10 +83,10 @@ class SaleLine:
         cls.write(lines, {'processing': True})
         Sale.process(sales)
 
-    def get_invoice_line(self, invoice_type):
+    def get_invoice_line(self):
         if not self.processing:
             return []
-        return super(SaleLine, self).get_invoice_line(invoice_type)
+        return super(SaleLine, self).get_invoice_line()
 
     def get_move(self, shipment_type):
         if not self.processing:
