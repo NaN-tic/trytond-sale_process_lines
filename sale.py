@@ -191,7 +191,7 @@ class ProcessLines(Wizard):
 
         sale = self.select.sale
         if self.select.lines:
-            SaleLine.write(self.select.lines, {
+            SaleLine.write(list(self.select.lines), {
                     'processing': True,
                     })
             Sale.process([sale])
