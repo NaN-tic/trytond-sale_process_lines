@@ -59,7 +59,7 @@ class SaleLine:
     @classmethod
     def __setup__(cls):
         super(SaleLine, cls).__setup__()
-        cls._allow_modify_after_draft = set(['state', 'processing',
+        cls._allow_modify_after_draft = set(['state', 'processing', 'sale',
                 'invoice_lines', 'moves', 'moves_ignored', 'moves_recreated'])
         cls._buttons.update({
                 'process': {
