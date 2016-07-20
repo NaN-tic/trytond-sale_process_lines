@@ -60,7 +60,9 @@ class SaleLine:
     def __setup__(cls):
         super(SaleLine, cls).__setup__()
         cls._allow_modify_after_draft = set(['state', 'processing', 'sale',
-                'invoice_lines', 'moves', 'moves_ignored', 'moves_recreated'])
+                'invoice_lines', 'moves', 'moves_ignored', 'moves_recreated',
+                'gross_unit_price', 'unit_price', 'gross_unit_price_wo_round',
+                ])
         cls._buttons.update({
                 'process': {
                     'invisible': Eval('processing', True),
