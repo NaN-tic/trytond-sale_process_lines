@@ -78,7 +78,7 @@
             <field name="name">Lines</field>
             <field name="res_model">sale.line</field>
             <field name="domain"
-                eval="[('sale', 'in', Eval('active_ids'))]"
+                eval="[('sale', '=', Eval('active_id'))]"
                 pyson="1"/>
         </record>
         <record model="ir.action.act_window.view" id="act_sale_sale_lines_form_view1">
