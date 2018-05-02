@@ -20,6 +20,17 @@
             <field name="group" ref="sale.group_sale"/>
         </record>
 
+        <record model="ir.model.button" id="sale_line_process_lines_button">
+            <field name="name">process</field>
+            <field name="model" search="[('model', '=', 'sale.line')]"/>
+        </record>
+        <record model="ir.model.button-res.group"
+                id="sale_line_process_lines_button_group_sale">
+            <field name="button" ref="sale_process_lines_button"/>
+            <field name="group" ref="sale.group_sale"/>
+        </record>
+
+
         <!-- sale.line -->
         <record model="ir.ui.view" id="sale_line_view_tree">
             <field name="model">sale.line</field>

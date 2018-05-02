@@ -7,11 +7,13 @@ from trytond.transaction import Transaction
 from trytond.wizard import Wizard, StateView, StateTransition, Button
 
 __all__ = ['Sale', 'SaleLine', 'ProcessLinesSelect', 'ProcessLines']
-__metaclass__ = PoolMeta
+
 
 
 class Sale:
     __name__ = 'sale.sale'
+    __metaclass__ = PoolMeta
+
     pending_process = fields.Function(
         fields.Boolean('Pending to process'),
         'on_change_with_pending_process')
@@ -54,6 +56,8 @@ class Sale:
 
 class SaleLine:
     __name__ = 'sale.line'
+    __metaclass__ = PoolMeta
+
     processing = fields.Boolean('Processing', readonly=True)
 
     @classmethod
@@ -157,6 +161,7 @@ class SaleLine:
 class ProcessLinesSelect(ModelView):
     'Process Lines Wizard - Select Lines'
     __name__ = 'sale.process.lines.select'
+
     sale = fields.Many2One('sale.sale', 'Sale', required=True, readonly=True)
     lines = fields.Many2Many('sale.line', None, None, 'Lines to process',
         domain=[
