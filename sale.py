@@ -46,7 +46,6 @@ class Sale:
         SaleLine = pool.get('sale.line')
 
         super(Sale, cls).do(sales)
-
         sale_lines = [l for s in sales for l in s.lines
             if l.type == 'line' and l.processing]
         SaleLine.write(sale_lines, {
@@ -107,7 +106,7 @@ class SaleLine:
         '''
         for line in lines:
             if (line.sale
-                    and line.sale.state != 'draft'):
+                    and line.sale.state not in ('draft', 'confirmed')):
                 cls.raise_user_error('modify_no_draft_sale', {
                         'line': line.rec_name,
                         'sale': line.sale.rec_name
