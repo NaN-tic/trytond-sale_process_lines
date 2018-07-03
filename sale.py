@@ -66,7 +66,7 @@ class SaleLine:
                 'invoice_lines', 'moves', 'moves_ignored', 'moves_recreated',
                 'gross_unit_price', 'unit_price', 'gross_unit_price_wo_round',
                 'sequence', 'moves_done', 'move_exception', 'shipping_date',
-                'processing', 'requested_delivery_date'])
+                'requested_delivery_date', 'manual_delivery_date'])
         cls._buttons.update({
                 'process': {
                     'invisible': Eval('processing', True),
