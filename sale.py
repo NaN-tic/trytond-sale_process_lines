@@ -10,9 +10,8 @@ __all__ = ['Sale', 'SaleLine', 'ProcessLinesSelect', 'ProcessLines']
 
 
 
-class Sale:
+class Sale(metaclass=PoolMeta):
     __name__ = 'sale.sale'
-    __metaclass__ = PoolMeta
 
     pending_process = fields.Function(
         fields.Boolean('Pending to process'),
@@ -53,9 +52,8 @@ class Sale:
                 })
 
 
-class SaleLine:
+class SaleLine(metaclass=PoolMeta):
     __name__ = 'sale.line'
-    __metaclass__ = PoolMeta
 
     processing = fields.Boolean('Processing', readonly=True)
 

@@ -141,7 +141,7 @@ Create an Inventory::
     >>> inventory_line.save()
     >>> Inventory.confirm([inventory.id], config.context)
     >>> inventory.state
-    u'done'
+    'done'
 
 Sale 5 products::
 
@@ -175,7 +175,7 @@ Process first line::
     >>> process_lines.execute('process_lines')
     >>> sale.reload()
     >>> sale.state
-    u'processing'
+    'processing'
     >>> len(sale.shipments), len(sale.shipment_returns), len(sale.invoices)
     (1, 0, 1)
     >>> sale.lines[0].processing and bool(sale.lines[0].moves)
@@ -204,13 +204,13 @@ Post and pay invoice::
     >>> pay.execute('choice')
     >>> invoice.reload()
     >>> invoice.state
-    u'paid'
+    'paid'
 
 Sale is still processing::
 
     >>> sale.reload()
     >>> sale.state
-    u'processing'
+    'processing'
 
 Process the pending lines::
 
@@ -218,7 +218,7 @@ Process the pending lines::
     >>> process_lines.execute('process_order')
     >>> sale.reload()
     >>> sale.state
-    u'processing'
+    'processing'
     >>> len(sale.shipments), len(sale.shipment_returns), len(sale.invoices)
     (2, 0, 2)
     >>> all((l.processing and l.moves) for l in sale.lines if l.type == 'line')
@@ -241,10 +241,10 @@ Post and pay pending invoice::
     >>> pay.execute('choice')
     >>> invoice.reload()
     >>> invoice.state
-    u'paid'
+    'paid'
 
 Sale is done::
 
     >>> sale.reload()
     >>> sale.state
-    u'done'
+    'done'
