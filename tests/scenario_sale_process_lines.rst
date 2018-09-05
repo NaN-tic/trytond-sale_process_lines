@@ -61,11 +61,19 @@ Create chart of accounts::
     >>> account_tax = accounts['tax']
     >>> account_cash = accounts['cash']
 
+
+Create payment method::
+
     >>> Journal = Model.get('account.journal')
+    >>> PaymentMethod = Model.get('account.invoice.payment.method')
+    >>> Sequence = Model.get('ir.sequence')
     >>> cash_journal, = Journal.find([('type', '=', 'cash')])
-    >>> cash_journal.credit_account = account_cash
-    >>> cash_journal.debit_account = account_cash
-    >>> cash_journal.save()
+    >>> payment_method = PaymentMethod()
+    >>> payment_method.name = 'Cash'
+    >>> payment_method.journal = cash_journal
+    >>> payment_method.credit_account = account_cash
+    >>> payment_method.debit_account = account_cash
+    >>> payment_method.save()
 
 Create parties::
 
@@ -200,7 +208,7 @@ Post and pay invoice::
     >>> invoice, = sale.invoices
     >>> invoice.click('post')
     >>> pay = Wizard('account.invoice.pay', [invoice])
-    >>> pay.form.journal = cash_journal
+    >>> pay.form.payment_method = payment_method
     >>> pay.execute('choice')
     >>> invoice.reload()
     >>> invoice.state
@@ -237,7 +245,7 @@ Post and pay pending invoice::
     >>> invoice, = [i for i in sale.invoices if i.state != 'paid']
     >>> invoice.click('post')
     >>> pay = Wizard('account.invoice.pay', [invoice])
-    >>> pay.form.journal = cash_journal
+    >>> pay.form.payment_method = payment_method
     >>> pay.execute('choice')
     >>> invoice.reload()
     >>> invoice.state
