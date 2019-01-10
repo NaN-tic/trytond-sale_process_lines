@@ -5,6 +5,8 @@ from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
 from trytond.transaction import Transaction
 from trytond.wizard import Wizard, StateView, StateTransition, Button
+from trytond.i18n import gettext
+from trytond.exceptions import UserError
 
 __all__ = ['Sale', 'SaleLine', 'ProcessLinesSelect', 'ProcessLines']
 
@@ -70,13 +72,6 @@ class SaleLine(metaclass=PoolMeta):
                     'invisible': Eval('processing', True),
                     },
                 })
-        cls._error_messages.update({
-                'modify_no_draft_sale': ('You can not modify line "%(line)s" '
-                    'from sale "%(sale)s" that is not draft.'),
-                'add_in_no_draft_sale': ('You can not add a line to sale '
-                    '"%(sale)s" that is not draft.'),
-
-                })
 
     @classmethod
     @ModelView.button
@@ -105,10 +100,10 @@ class SaleLine(metaclass=PoolMeta):
         for line in lines:
             if (line.sale
                     and line.sale.state not in ('draft', 'confirmed')):
-                cls.raise_user_error('modify_no_draft_sale', {
-                        'line': line.rec_name,
-                        'sale': line.sale.rec_name
-                        })
+                raise UserError(gettext(
+                    'sale_process_lines.modify_no_draft_sale',
+                        line=line.rec_name,
+                        sale=line.sale.rec_name))
 
     @classmethod
     def create(cls, vlist):
@@ -119,8 +114,9 @@ class SaleLine(metaclass=PoolMeta):
                 sale_ids.append(vals.get('sale'))
         for sale in Sale.browse(sale_ids):
             if sale.state != 'draft':
-                cls.raise_user_error('add_in_no_draft_sale',
-                    (sale.rec_name,))
+                raise UserError(gettext(
+                    'sale_process_lines.add_in_no_draft_sale',
+                    line=sale.rec_name))
         return super(SaleLine, cls).create(vlist)
 
     @classmethod
@@ -145,8 +141,9 @@ class SaleLine(metaclass=PoolMeta):
                 sale_ids.append(values.get('sale'))
         for sale in Sale.browse(sale_ids):
             if sale.state != 'draft':
-                cls.raise_user_error('add_in_no_draft_sale',
-                    (sale.rec_name,))
+                raise UserError(gettext(
+                    'sale_process_lines.add_in_no_draft_sale',
+                    line=sale.rec_name))
         super(SaleLine, cls).write(*args)
 
     @classmethod
