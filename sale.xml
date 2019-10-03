@@ -12,6 +12,7 @@
 
         <record model="ir.model.button" id="sale_process_lines_button">
             <field name="name">process_lines</field>
+            <field name="string">Process</field>
             <field name="model" search="[('model', '=', 'sale.sale')]"/>
         </record>
         <record model="ir.model.button-res.group"
@@ -22,6 +23,7 @@
 
         <record model="ir.model.button" id="sale_line_process_lines_button">
             <field name="name">process</field>
+            <field name="string">Process</field>
             <field name="model" search="[('model', '=', 'sale.line')]"/>
         </record>
         <record model="ir.model.button-res.group"

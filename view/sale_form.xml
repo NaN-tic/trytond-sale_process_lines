@@ -5,6 +5,6 @@
     <xpath expr="/form/notebook/page/group/group[@id='buttons']/button[@name='process']"
             position="replace">
         <field name="pending_process" invisible="1"/>
-        <button name="process_lines" string="Process" icon="tryton-forward"/>
+        <button name="process_lines"/>
     </xpath>
 </data>

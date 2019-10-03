@@ -25,6 +25,7 @@ class Sale(metaclass=PoolMeta):
         cls._buttons.update({
                 'process_lines': {
                     'invisible': ~Eval('pending_process', False),
+                    'icon': 'tryton-forward',
                     },
                 })
 
