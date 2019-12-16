@@ -99,8 +99,8 @@ class SaleLine(metaclass=PoolMeta):
         Check if the lines can be modified
         '''
         for line in lines:
-            if (line.sale
-                    and line.sale.state not in ('draft', 'confirmed')):
+            if (line.sale and line.sale.state not in ('draft', 'confirmed',
+                        'cancel')):
                 raise UserError(gettext(
                     'sale_process_lines.modify_no_draft_sale',
                         line=line.rec_name,
