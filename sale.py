@@ -100,7 +100,7 @@ class SaleLine(metaclass=PoolMeta):
         '''
         for line in lines:
             if (line.sale and line.sale.state not in ('draft', 'confirmed',
-                        'cancel')):
+                        'cancelled')):
                 raise UserError(gettext(
                     'sale_process_lines.modify_no_draft_sale',
                         line=line.rec_name,
