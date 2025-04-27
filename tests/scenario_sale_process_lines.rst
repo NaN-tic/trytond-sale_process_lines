@@ -38,7 +38,7 @@ Create sale user::
     >>> sale_user.groups.append(sale_group)
     >>> stock_group, = Group.find([('name', '=', 'Stock')])
     >>> sale_user.groups.append(stock_group)
-    >>> account_group, = Group.find([('name', '=', 'Account')])
+    >>> account_group, = Group.find([('name', '=', 'Accounting')])
     >>> sale_user.groups.append(account_group)
     >>> sale_user.save()
 
